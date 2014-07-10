@@ -2,6 +2,12 @@
 # If you have a Development folder, then add the following:
 #
 # . ~/Development/dot_files/bash_profile
+#
+# mkdir ~/Development
+# git clone https://github.com/rupa/z.git
+# cd ~/Development
+# brew install git bash-completion
+
 
 ########################################
 # Better command prompt
@@ -15,6 +21,13 @@ alias ls='ls -GFh'
 # z - for jumping around
 ########################################
 . ~/Development/z/z.sh
+
+########################################
+# bash-completion
+########################################
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 ########################################
 # Git aliases
