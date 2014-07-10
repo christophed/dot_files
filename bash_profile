@@ -12,7 +12,11 @@
 ########################################
 # Better command prompt
 ########################################
-export PS1="\[\033[36m\]\u:\[\033[33;1m\]\w\[\033[m\]\$ "
+symbols=("☺" "☀" "☁" "★" "☆" "☯" "☏" "♕" "☑" "☒" "✓" "✗" "♣" "♤" "♥" "♦" "♧" "►" "☞" "☛" "☣")
+RANDOM=$$$(date +%s)
+selected_symbol=${symbols[$RANDOM % ${#symbols[@]} ]}
+
+export PS1="\[\033[36m\]\u:\[\033[33;1m\]\w\[\033[m\]$selected_symbol "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
