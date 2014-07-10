@@ -42,6 +42,14 @@ alias gco='git checkout'
 alias gcb='git checkout -b'
 
 ########################################
-# Prepend /usr/local/bin to make brew happy
+# Something for brew and my subl
 ########################################
 export PATH=/usr/local/bin:$PATH
+
+########################################
+# sublimetext is my editor of choice
+########################################
+if [ -f ~/bin/subl ]; then
+  export EDITOR='subl -w'
+fi
+
