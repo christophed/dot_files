@@ -1,0 +1,28 @@
+set nocursorline " don't highlight current line
+
+" keyboard shortcuts
+inoremap jj <ESC>
+
+" Cross hairs
+set cursorline
+set cursorcolumn
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    colorscheme solarized
+
+    " Colored crosshairs
+    hi CursorColumn guibg=#303030
+    hi CursorLine guibg=#303030
+  else
+    colorscheme desert
+
+    " Colored crosshairs
+    hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkred
+    hi CursorColumn cterm=NONE ctermbg=darkblue ctermfg=white guibg=darkred guifg=white
+  endif
+endif
+
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
