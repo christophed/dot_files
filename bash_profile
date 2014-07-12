@@ -57,3 +57,9 @@ if [ -f ~/bin/subl ]; then
   export EDITOR='subl -w'
 fi
 
+########################################
+# rails shortcuts
+########################################
+alias be='bundle exec'
+alias bees='be rspec'
+
