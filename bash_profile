@@ -8,15 +8,9 @@
 # cd ~/Development
 # brew install git bash-completion
 
-
 ########################################
 # Better command prompt
 ########################################
-symbols=("☺" "☀" "☁" "★" "☆" "☯" "☏" "♕" "☑" "☒" "✓" "✗" "♣" "♤" "♥" "♦" "♧" "►" "☞" "☛" "☣")
-RANDOM=$$$(date +%s)
-selected_symbol=${symbols[$RANDOM % ${#symbols[@]} ]}
-
-export PS1="\[\033[36m\]\u:\[\033[33;1m\]\w\[\033[m\]$selected_symbol "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
@@ -62,4 +56,36 @@ fi
 ########################################
 alias be='bundle exec'
 alias bees='be rspec'
+
+
+########################################
+# git branch
+########################################
+function parse_git_branch () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+function check_git_status() {
+  if [[ -n $(git diff 2> /dev/null) ]]; then
+      echo -n "*"
+  fi
+
+  if [[ -n $(git diff --cached 2> /dev/null) ]]; then
+      echo -n "+"
+  fi
+}
+
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+NO_COLOR="\[\033[0m\]"
+
+PS1="$GREEN\u$NO_COLOR:\w$YELLOW\$(parse_git_branch)\$(check_git_status)$NO_COLOR "
+
+########################################
+# Git bash completion
+########################################
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
 
